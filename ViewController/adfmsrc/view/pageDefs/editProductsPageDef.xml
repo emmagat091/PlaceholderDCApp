@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.22.48" id="editProductsPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Products" RangeSize="25" DataControl="ProductData" id="ProductsIterator"/>
+    <iterator Binds="Categories" RangeSize="25" DataControl="ProductData" id="CategoriesIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="ProductsIterator" id="Products">
+      <nodeDefinition DefName="model.prototype.Products" Name="Products0">
+        <AttrNames>
+          <Item Value="ProductName"/>
+          <Item Value="ProductDesc"/>
+          <Item Value="Price"/>
+          <Item Value="Supplier"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CategoriesIterator" id="Categories">
+      <nodeDefinition DefName="model.prototype.Categories" Name="Categories0"
+                      TargetIterator="${bindings.ProductsIterator}">
+        <AttrNames>
+          <Item Value="CategoryName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>
